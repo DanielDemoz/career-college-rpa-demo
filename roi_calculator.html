@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPA ROI Calculator - Brukd</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .calculator-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .input-section {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .label-description {
+            font-size: 0.9em;
+            color: #7f8c8d;
+            font-weight: normal;
+            margin-top: 5px;
+        }
+
+        input[type="number"],
+        input[type="range"] {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        input[type="range"] {
+            -webkit-appearance: none;
+            height: 8px;
+            background: #ddd;
+            border: none;
+            padding: 0;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: #667eea;
+            border-radius: 50%;
+            cursor: pointer;
+            border: none;
+        }
+
+        .range-value {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .results-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+
+        .results-section h2 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .result-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .result-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .result-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .breakdown-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+        }
+
+        .breakdown-table th {
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .breakdown-table td {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .breakdown-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .total-row {
+            font-weight: bold;
+            background: #d4edda !important;
+            font-size: 1.2em;
+        }
+
+        .button-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            margin: 10px;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .preset-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .preset-btn {
+            background: #e0e0e0;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .preset-btn:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        .highlight-box {
+            background: #fff3cd;
+            border-left: 5px solid #ffc107;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+
+        .chart-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 250px;
+            margin: 30px 0;
+        }
+
+        .chart-bar {
+            width: 80px;
+            background: linear-gradient(to top, #667eea, #764ba2);
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            transition: height 0.5s;
+        }
+
+        .chart-bar-value {
+            position: absolute;
+            top: -35px;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .chart-bar-label {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <header>
+            <h1>🧮 RPA/AI ROI Calculator</h1>
+            <p>Calculate Your Potential Savings with Automation</p>
+        </header>
+
+        <div class="content">
+            <!-- Input Section -->
+            <div class="input-section">
+                <h2 style="color: #2c3e50; margin-bottom: 25px;">📊 Your Current Process</h2>
+                
+                <div class="preset-buttons">
+                    <button class="preset-btn" onclick="loadPreset('small')">Small College (100/mo)</button>
+                    <button class="preset-btn" onclick="loadPreset('medium')">Medium College (300/mo)</button>
+                    <button class="preset-btn" onclick="loadPreset('large')">Large College (500/mo)</button>
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Applications Per Month
+                        <span class="label-description">How many applications do you process monthly?</span>
+                    </label>
+                    <input type="number" id="applications" value="300" onchange="calculate()" min="10" max="10000">
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Current Processing Time (minutes)
+                        <span class="label-description">Average time to process one application</span>
+                    </label>
+                    <input type="number" id="processingTime" value="45" onchange="calculate()" min="5" max="180">
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Staff Hourly Cost ($)
+                        <span class="label-description">Loaded cost including benefits</span>
+                    </label>
+                    <input type="number" id="hourlyCost" value="28" onchange="calculate()" min="15" max="100">
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Expected Time Reduction (%)
+                        <span class="range-value" id="reductionDisplay">65%</span>
+                        <span class="label-description">Typical automation reduces processing time by 50-80%</span>
+                    </label>
+                    <input type="range" id="timeReduction" value="65" min="30" max="90" onchange="calculate()" oninput="updateReductionDisplay()">
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Implementation Cost ($)
+                        <span class="label-description">One-time setup investment</span>
+                    </label>
+                    <input type="number" id="implementationCost" value="45000" onchange="calculate()" min="10000" max="200000">
+                </div>
+
+                <div class="input-group">
+                    <label>
+                        Monthly Maintenance ($)
+                        <span class="label-description">Ongoing hosting and support costs</span>
+                    </label>
+                    <input type="number" id="maintenance" value="500" onchange="calculate()" min="100" max="5000">
+                </div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="results-section" id="results">
+                <h2>💰 Your Potential Savings</h2>
+                
+                <div class="results-grid">
+                    <div class="result-card">
+                        <div class="result-label">Monthly Savings</div>
+                        <div class="result-value" id="monthlySavings">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Annual Savings</div>
+                        <div class="result-value" id="annualSavings">$0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">Payback Period</div>
+                        <div class="result-value" id="paybackPeriod">0</div>
+                    </div>
+                    <div class="result-card">
+                        <div class="result-label">3-Year ROI</div>
+                        <div class="result-value" id="threeYearROI">0%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Breakdown -->
+            <div class="chart-container">
+                <h3 style="color: #2c3e50; margin-bottom: 20px;">📈 Cost Breakdown</h3>
+                
+                <table class="breakdown-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Current (Monthly)</th>
+                            <th>After Automation</th>
+                            <th>Savings</th>
+                        </tr>
+                    </thead>
+                    <tbody id="breakdownTable">
+                        <!-- Populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- ROI Over Time Chart -->
+            <div class="chart-container">
+                <h3 style="color: #2c3e50; margin-bottom: 20px; text-align: center;">📊 ROI Projection (3 Years)</h3>
+                <div class="bar-chart">
+                    <div>
+                        <div class="chart-bar" id="bar0">
+                            <div class="chart-bar-value" id="barValue0">$0</div>
+                        </div>
+                        <div class="chart-bar-label">Initial</div>
+                    </div>
+                    <div>
+                        <div class="chart-bar" id="bar1">
+                            <div class="chart-bar-value" id="barValue1">$0</div>
+                        </div>
+                        <div class="chart-bar-label">Year 1</div>
+                    </div>
+                    <div>
+                        <div class="chart-bar" id="bar2">
+                            <div class="chart-bar-value" id="barValue2">$0</div>
+                        </div>
+                        <div class="chart-bar-label">Year 2</div>
+                    </div>
+                    <div>
+                        <div class="chart-bar" id="bar3">
+                            <div class="chart-bar-value" id="barValue3">$0</div>
+                        </div>
+                        <div class="chart-bar-label">Year 3</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlight Box -->
+            <div class="highlight-box">
+                <strong>💡 Pro Tip:</strong> These calculations are based on direct labor cost savings only. 
+                Additional benefits include improved accuracy, increased capacity, better staff satisfaction, 
+                and enhanced student experience - which add significant strategic value!
+            </div>
+
+            <!-- CTA Buttons -->
+            <div style="text-align: center; margin-top: 40px;">
+                <button class="button-primary" onclick="window.print()">🖨️ Print Results</button>
+                <button class="button-primary" onclick="shareResults()">📧 Email to Client</button>
+                <a href="mailto:info@brukd.com" class="button-primary" style="text-decoration: none; display: inline-block;">
+                    Schedule Consultation
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function formatCurrency(value) {
+            return '$' + Math.round(value).toLocaleString();
+        }
+
+        function formatMonths(value) {
+            if (value < 1) return '<1 month';
+            if (value === 1) return '1 month';
+            return Math.round(value) + ' months';
+        }
+
+        function updateReductionDisplay() {
+            const reduction = document.getElementById('timeReduction').value;
+            document.getElementById('reductionDisplay').textContent = reduction + '%';
+        }
+
+        function loadPreset(size) {
+            const presets = {
+                small: { applications: 100, processingTime: 40, hourlyCost: 25, implementationCost: 30000 },
+                medium: { applications: 300, processingTime: 45, hourlyCost: 28, implementationCost: 45000 },
+                large: { applications: 500, processingTime: 50, hourlyCost: 30, implementationCost: 60000 }
+            };
+
+            const preset = presets[size];
+            document.getElementById('applications').value = preset.applications;
+            document.getElementById('processingTime').value = preset.processingTime;
+            document.getElementById('hourlyCost').value = preset.hourlyCost;
+            document.getElementById('implementationCost').value = preset.implementationCost;
+
+            calculate();
+        }
+
+        function calculate() {
+            // Get inputs
+            const applications = parseFloat(document.getElementById('applications').value) || 0;
+            const processingTime = parseFloat(document.getElementById('processingTime').value) || 0;
+            const hourlyCost = parseFloat(document.getElementById('hourlyCost').value) || 0;
+            const reductionPercent = parseFloat(document.getElementById('timeReduction').value) || 0;
+            const implementationCost = parseFloat(document.getElementById('implementationCost').value) || 0;
+            const maintenance = parseFloat(document.getElementById('maintenance').value) || 0;
+
+            // Calculate current costs
+            const hoursPerMonth = (processingTime / 60) * applications;
+            const monthlyCostBefore = hoursPerMonth * hourlyCost;
+
+            // Calculate after automation
+            const newProcessingTime = processingTime * (1 - reductionPercent / 100);
+            const hoursAfter = (newProcessingTime / 60) * applications;
+            const monthlyCostAfter = (hoursAfter * hourlyCost) + maintenance;
+
+            // Calculate savings
+            const monthlySavings = monthlyCostBefore - monthlyCostAfter;
+            const annualSavings = monthlySavings * 12;
+            const paybackMonths = implementationCost / monthlySavings;
+            const threeYearReturn = (annualSavings * 3) - implementationCost;
+            const roiPercent = (threeYearReturn / implementationCost) * 100;
+
+            // Update results
+            document.getElementById('monthlySavings').textContent = formatCurrency(monthlySavings);
+            document.getElementById('annualSavings').textContent = formatCurrency(annualSavings);
+            document.getElementById('paybackPeriod').textContent = formatMonths(paybackMonths);
+            document.getElementById('threeYearROI').textContent = Math.round(roiPercent) + '%';
+
+            // Update breakdown table
+            const breakdownHTML = `
+                <tr>
+                    <td>Staff Hours</td>
+                    <td>${Math.round(hoursPerMonth)} hours</td>
+                    <td>${Math.round(hoursAfter)} hours</td>
+                    <td style="color: #27ae60; font-weight: bold;">${Math.round(hoursPerMonth - hoursAfter)} hours saved</td>
+                </tr>
+                <tr>
+                    <td>Labor Cost</td>
+                    <td>${formatCurrency(monthlyCostBefore)}</td>
+                    <td>${formatCurrency(hoursAfter * hourlyCost)}</td>
+                    <td style="color: #27ae60; font-weight: bold;">${formatCurrency(monthlyCostBefore - (hoursAfter * hourlyCost))}</td>
+                </tr>
+                <tr>
+                    <td>Maintenance</td>
+                    <td>$0</td>
+                    <td>${formatCurrency(maintenance)}</td>
+                    <td style="color: #e74c3c;">-${formatCurrency(maintenance)}</td>
+                </tr>
+                <tr class="total-row">
+                    <td>Total Monthly Cost</td>
+                    <td>${formatCurrency(monthlyCostBefore)}</td>
+                    <td>${formatCurrency(monthlyCostAfter)}</td>
+                    <td style="color: #27ae60;">${formatCurrency(monthlySavings)}</td>
+                </tr>
+            `;
+            document.getElementById('breakdownTable').innerHTML = breakdownHTML;
+
+            // Update chart
+            const maxValue = Math.max(annualSavings * 3, implementationCost);
+            const year0 = -implementationCost;
+            const year1 = annualSavings - implementationCost;
+            const year2 = (annualSavings * 2) - implementationCost;
+            const year3 = (annualSavings * 3) - implementationCost;
+
+            updateBar(0, year0, maxValue);
+            updateBar(1, year1, maxValue);
+            updateBar(2, year2, maxValue);
+            updateBar(3, year3, maxValue);
+        }
+
+        function updateBar(index, value, maxValue) {
+            const bar = document.getElementById('bar' + index);
+            const barValue = document.getElementById('barValue' + index);
+            
+            // Calculate height (min 20px, max 200px)
+            let height;
+            if (value < 0) {
+                height = 20; // Minimum height for negative values
+                bar.style.background = 'linear-gradient(to top, #e74c3c, #c0392b)';
+            } else {
+                height = 20 + (value / maxValue) * 180;
+                bar.style.background = 'linear-gradient(to top, #667eea, #764ba2)';
+            }
+            
+            bar.style.height = height + 'px';
+            barValue.textContent = formatCurrency(value);
+            
+            if (value < 0) {
+                barValue.style.color = '#e74c3c';
+            } else {
+                barValue.style.color = '#27ae60';
+            }
+        }
+
+        function shareResults() {
+            const monthlySavings = document.getElementById('monthlySavings').textContent;
+            const annualSavings = document.getElementById('annualSavings').textContent;
+            const payback = document.getElementById('paybackPeriod').textContent;
+            const roi = document.getElementById('threeYearROI').textContent;
+
+            const subject = 'RPA/AI Automation ROI Projection';
+            const body = `Brukd RPA/AI Automation - Estimated ROI
+
+Monthly Savings: ${monthlySavings}
+Annual Savings: ${annualSavings}
+Payback Period: ${payback}
+3-Year ROI: ${roi}
+
+These projections are based on your current processing volume and costs. 
+Contact Brukd for a detailed assessment: info@brukd.com | 1-800-BRUKD-AI`;
+
+            window.location.href = 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+        }
+
+        // Initialize on load
+        window.addEventListener('load', () => {
+            calculate();
+        });
+    </script>
+</body>
+</html>
+

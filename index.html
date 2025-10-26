@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brukd RPA/AI Demo Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        header p {
+            font-size: 1.5em;
+            opacity: 0.95;
+        }
+
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .demo-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .demo-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+
+        .demo-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .demo-card h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .demo-card p {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        .demo-link {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            display: inline-block;
+            font-weight: bold;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .demo-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .features-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .features-list li {
+            padding: 8px 0;
+            color: #555;
+            font-size: 1em;
+        }
+
+        .features-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            margin-right: 8px;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .info-section h2 {
+            color: #2c3e50;
+            font-size: 2.2em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .info-section p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .metrics-row {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .metric-item {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .metric-value {
+            font-size: 3em;
+            font-weight: bold;
+            color: #667eea;
+        }
+
+        .metric-label {
+            color: #7f8c8d;
+            font-size: 1.1em;
+            margin-top: 10px;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 50px;
+            margin-top: 40px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .cta-section p {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: #f5576c;
+            padding: 20px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-row {
+                flex-direction: column;
+            }
+        }
+
+        .badge {
+            background: #27ae60;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .badge-new {
+            background: #3498db;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Brukd RPA/AI Demo Hub</h1>
+            <p>Interactive Demonstrations for Non-Technical Clients</p>
+        </header>
+
+        <div class="demo-grid">
+            <!-- Demo 1: Interactive Presentation -->
+            <div class="demo-card">
+                <div class="demo-icon">🎬</div>
+                <span class="badge badge-new">Recommended</span>
+                <h2>Interactive Presentation</h2>
+                <p>Complete slideshow presentation with animations. Perfect for client meetings and sales presentations.</p>
+                <ul class="features-list">
+                    <li>8 professional slides</li>
+                    <li>Before/after comparisons</li>
+                    <li>ROI breakdowns</li>
+                    <li>Keyboard navigation</li>
+                </ul>
+                <a href="demo_presentation.html" class="demo-link">View Presentation →</a>
+            </div>
+
+            <!-- Demo 2: Metrics Dashboard -->
+            <div class="demo-card">
+                <div class="demo-icon">📊</div>
+                <span class="badge">Popular</span>
+                <h2>Metrics Dashboard</h2>
+                <p>Visual dashboard showing key metrics, comparisons, and testimonials. Great for data-driven discussions.</p>
+                <ul class="features-list">
+                    <li>Animated statistics</li>
+                    <li>Interactive charts</li>
+                    <li>Client testimonials</li>
+                    <li>Professional design</li>
+                </ul>
+                <a href="metrics_dashboard.html" class="demo-link">View Dashboard →</a>
+            </div>
+
+            <!-- Demo 3: ROI Calculator -->
+            <div class="demo-card">
+                <div class="demo-icon">🧮</div>
+                <span class="badge">Interactive</span>
+                <h2>ROI Calculator</h2>
+                <p>Let clients calculate their own potential savings with customizable inputs and instant results.</p>
+                <ul class="features-list">
+                    <li>Customizable inputs</li>
+                    <li>Instant calculations</li>
+                    <li>Preset scenarios</li>
+                    <li>Printable results</li>
+                </ul>
+                <a href="roi_calculator.html" class="demo-link">Calculate ROI →</a>
+            </div>
+        </div>
+
+        <!-- Info Section -->
+        <div class="info-section">
+            <h2>About This Demo</h2>
+            <p>
+                These HTML demonstrations showcase the business value of Brukd's RPA/AI automation 
+                for Ontario career college enrollment processing. Each demo can be opened directly 
+                in any web browser - <strong>no installation required!</strong>
+            </p>
+
+            <div class="metrics-row">
+                <div class="metric-item">
+                    <div class="metric-value">65%</div>
+                    <div class="metric-label">Time Reduction</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">$48K</div>
+                    <div class="metric-label">Annual Savings</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">11 mo</div>
+                    <div class="metric-label">Payback Period</div>
+                </div>
+                <div class="metric-item">
+                    <div class="metric-value">325%</div>
+                    <div class="metric-label">3-Year ROI</div>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 30px;">
+                <strong>Perfect for:</strong> Client meetings • Sales presentations • Conference demos • 
+                Email attachments • Web hosting • Stakeholder reviews
+            </p>
+        </div>
+
+        <!-- Technical Demo Section -->
+        <div class="info-section" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border: 3px solid #667eea;">
+            <h2>🖥️ Want the Full Technical Demo?</h2>
+            <p style="text-align: center;">
+                For technical audiences, we also have a complete Python-based demonstration with:
+            </p>
+            <div class="metrics-row">
+                <div class="metric-item">
+                    <div class="demo-icon" style="font-size: 3em;">🔍</div>
+                    <div class="metric-label"><strong>Real OCR Processing</strong><br>Extract text from documents</div>
+                </div>
+                <div class="metric-item">
+                    <div class="demo-icon" style="font-size: 3em;">🤖</div>
+                    <div class="metric-label"><strong>AI Classification</strong><br>Intelligent document sorting</div>
+                </div>
+                <div class="metric-item">
+                    <div class="demo-icon" style="font-size: 3em;">⚙️</div>
+                    <div class="metric-label"><strong>Workflow Automation</strong><br>End-to-end processing</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 20px;">
+                See <strong>README.md</strong> and <strong>QUICK_START.md</strong> for the technical demo setup
+            </p>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Transform Your Processes?</h2>
+            <p>Let's discuss how Brukd can help you achieve similar results</p>
+            <a href="mailto:info@brukd.com" class="cta-button">📧 Email Us</a>
+            <a href="tel:1-800-278-5324" class="cta-button">📞 Call 1-800-BRUKD-AI</a>
+            <p style="margin-top: 30px; font-size: 1.1em;">
+                🌐 www.brukd.com | Based in Toronto, ON
+            </p>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; color: white; margin-top: 40px; padding: 20px; opacity: 0.9;">
+            <p>© 2025 Brukd Consultancy - Process Automation & AI Integration</p>
+            <p style="margin-top: 10px;">All demonstrations are browser-based and require no installation</p>
+        </div>
+    </div>
+
+    <script>
+        // Add smooth scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const cards = document.querySelectorAll('.demo-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(30px)';
+                    card.style.transition = 'opacity 0.5s, transform 0.5s';
+                    
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 100);
+                }, index * 150);
+            });
+        });
+    </script>
+</body>
+</html>
+

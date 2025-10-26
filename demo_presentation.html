@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brukd RPA/AI Automation Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            flex: 1;
+        }
+
+        .slide {
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            min-height: 70vh;
+            animation: slideIn 0.5s ease;
+        }
+
+        .slide.active {
+            display: block;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #3498db;
+            font-size: 2.2em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin: 30px 0 15px 0;
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .metric-value {
+            font-size: 3em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .metric-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .comparison-table {
+            width: 100%;
+            margin: 30px 0;
+            border-collapse: collapse;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .comparison-table th {
+            background: #3498db;
+            color: white;
+            padding: 20px;
+            font-size: 1.3em;
+        }
+
+        .comparison-table td {
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2em;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .before-col {
+            background: #ffe5e5;
+        }
+
+        .after-col {
+            background: #e5ffe5;
+        }
+
+        .improvement-col {
+            background: #e5f5ff;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #eee;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .slide-indicator {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .benefit-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .benefit-list li {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f8f9fa;
+            border-left: 5px solid #27ae60;
+            border-radius: 5px;
+            font-size: 1.2em;
+        }
+
+        .benefit-list li:before {
+            content: "✓ ";
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+
+        .process-flow {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .process-step {
+            background: white;
+            border: 3px solid #3498db;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 10px;
+            min-width: 150px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .process-arrow {
+            font-size: 2em;
+            color: #3498db;
+            margin: 0 10px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .cta-box p {
+            color: white;
+            font-size: 1.3em;
+        }
+
+        .roi-chart {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .bar-chart {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            height: 300px;
+            margin: 30px 0;
+        }
+
+        .bar {
+            width: 100px;
+            background: linear-gradient(to top, #667eea, #764ba2);
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            transition: all 0.5s;
+        }
+
+        .bar-label {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .bar-value {
+            position: absolute;
+            top: -30px;
+            width: 100%;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Slide 1: Title -->
+        <div class="slide active" id="slide1">
+            <div class="logo">
+                <h1>🤖 BRUKD</h1>
+                <p style="text-align: center; color: #667eea; font-size: 1.3em;">Process Automation & AI Integration</p>
+            </div>
+            <h1 style="margin-top: 60px;">Career College Enrollment Automation</h1>
+            <h2 style="color: #555;">RPA/AI Workflow Demonstration</h2>
+            
+            <div class="highlight">
+                <h3 style="text-align: center; color: #2c3e50;">The Challenge</h3>
+                <p style="text-align: center; font-size: 1.4em;">
+                    Ontario career colleges process hundreds of student enrollments monthly using 
+                    <strong style="color: #e74c3c;">slow, manual, error-prone</strong> processes.
+                </p>
+            </div>
+
+            <div class="metric-grid" style="margin-top: 50px;">
+                <div class="metric-card" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+                    <div class="metric-value">45 min</div>
+                    <div class="metric-label">Per Application</div>
+                </div>
+                <div class="metric-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                    <div class="metric-value">12%</div>
+                    <div class="metric-label">Error Rate</div>
+                </div>
+                <div class="metric-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
+                    <div class="metric-value">8</div>
+                    <div class="metric-label">Staff Required</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: The Problem -->
+        <div class="slide" id="slide2">
+            <h2>The Problem: Manual Processing</h2>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">📧</h3>
+                    <p>Receive Documents</p>
+                    <small>5 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">👀</h3>
+                    <p>Manual Review</p>
+                    <small>10 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">⌨️</h3>
+                    <p>Data Entry</p>
+                    <small>12 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">✅</h3>
+                    <p>Validation</p>
+                    <small>8 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">📤</h3>
+                    <p>Notifications</p>
+                    <small>10 min</small>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Pain Points:</h3>
+            <ul class="benefit-list">
+                <li style="border-left-color: #e74c3c;">Slow and time-consuming (45-60 minutes per application)</li>
+                <li style="border-left-color: #e74c3c;">High error rate (12% mistakes in data entry)</li>
+                <li style="border-left-color: #e74c3c;">Staff burnout from repetitive work</li>
+                <li style="border-left-color: #e74c3c;">Unable to scale enrollment</li>
+                <li style="border-left-color: #e74c3c;">Poor student experience (3-5 day wait times)</li>
+            </ul>
+        </div>
+
+        <!-- Slide 3: The Solution -->
+        <div class="slide" id="slide3">
+            <h2>The Solution: RPA/AI Automation</h2>
+            
+            <div class="process-flow">
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">🤖</h3>
+                    <p>OCR Extraction</p>
+                    <small>3 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">🧠</h3>
+                    <p>AI Classification</p>
+                    <small>2 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">⚡</h3>
+                    <p>Auto Validation</p>
+                    <small>3 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">🎯</h3>
+                    <p>Smart Routing</p>
+                    <small>1 min</small>
+                </div>
+                <div class="process-arrow">→</div>
+                <div class="process-step">
+                    <h3 style="font-size: 1.5em;">👤</h3>
+                    <p>Staff Review</p>
+                    <small>7 min</small>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 40px;">Key Technologies:</h3>
+            <ul class="benefit-list">
+                <li><strong>OCR Engine</strong> - Automatically extracts text from documents</li>
+                <li><strong>AI Classifier</strong> - Identifies document types with 97% accuracy</li>
+                <li><strong>Smart Validator</strong> - Checks requirements and compliance</li>
+                <li><strong>Workflow Router</strong> - Intelligently assigns tasks</li>
+                <li><strong>Auto Notifications</strong> - Sends personalized emails instantly</li>
+            </ul>
+        </div>
+
+        <!-- Slide 4: Results -->
+        <div class="slide" id="slide4">
+            <h2>Dramatic Results Achieved</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th class="before-col">Before</th>
+                        <th class="after-col">After</th>
+                        <th class="improvement-col">Improvement</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Processing Time</strong></td>
+                        <td class="before-col">45 minutes</td>
+                        <td class="after-col">16 minutes</td>
+                        <td class="improvement-col">65% ↓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Error Rate</strong></td>
+                        <td class="before-col">12%</td>
+                        <td class="after-col">2.6%</td>
+                        <td class="improvement-col">78% ↓</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Staff Required</strong></td>
+                        <td class="before-col">8 people</td>
+                        <td class="after-col">3 people</td>
+                        <td class="improvement-col">5 redeployed</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monthly Cost</strong></td>
+                        <td class="before-col">$6,300</td>
+                        <td class="after-col">$2,240</td>
+                        <td class="improvement-col">$4,060 saved</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Processing Capacity</strong></td>
+                        <td class="before-col">300/month</td>
+                        <td class="after-col">800/month</td>
+                        <td class="improvement-col">167% ↑</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="highlight" style="margin-top: 40px;">
+                <h3 style="text-align: center;">💰 Annual Savings: $48,720</h3>
+                <p style="text-align: center; font-size: 1.4em; margin: 0;">
+                    Plus improved quality, staff satisfaction, and student experience!
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 5: ROI -->
+        <div class="slide" id="slide5">
+            <h2>Return on Investment</h2>
+            
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-label">Implementation Cost</div>
+                    <div class="metric-value">$45K</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Annual Savings</div>
+                    <div class="metric-value">$48.7K</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">Payback Period</div>
+                    <div class="metric-value">11 mo</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">3-Year ROI</div>
+                    <div class="metric-value">325%</div>
+                </div>
+            </div>
+
+            <div class="roi-chart">
+                <h3 style="text-align: center;">Cumulative Savings Over 3 Years</h3>
+                <div class="bar-chart">
+                    <div>
+                        <div class="bar" style="height: 50px; background: linear-gradient(to top, #e74c3c, #c0392b);">
+                            <div class="bar-value">-$45K</div>
+                        </div>
+                        <div class="bar-label">Initial</div>
+                    </div>
+                    <div>
+                        <div class="bar" style="height: 80px;">
+                            <div class="bar-value">$4K</div>
+                        </div>
+                        <div class="bar-label">Year 1</div>
+                    </div>
+                    <div>
+                        <div class="bar" style="height: 170px;">
+                            <div class="bar-value">$47K</div>
+                        </div>
+                        <div class="bar-label">Year 2</div>
+                    </div>
+                    <div>
+                        <div class="bar" style="height: 260px;">
+                            <div class="bar-value">$146K</div>
+                        </div>
+                        <div class="bar-label">Year 3</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="highlight">
+                <p style="text-align: center; font-size: 1.3em; margin: 0;">
+                    <strong>System pays for itself in 11 months,</strong> then generates pure savings!
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Benefits -->
+        <div class="slide" id="slide6">
+            <h2>Strategic Benefits</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px;">
+                <div>
+                    <h3>🎓 Student Experience</h3>
+                    <ul class="benefit-list">
+                        <li>4-hour response vs 3-5 days</li>
+                        <li>Real-time status tracking</li>
+                        <li>Instant confirmations</li>
+                        <li>Clear communication</li>
+                    </ul>
+                    <p style="text-align: center; font-size: 1.3em; margin-top: 20px;">
+                        <strong>Satisfaction: 3.8 → 4.7</strong>
+                    </p>
+                </div>
+                
+                <div>
+                    <h3>👥 Staff Empowerment</h3>
+                    <ul class="benefit-list">
+                        <li>No more data entry</li>
+                        <li>Focus on counseling</li>
+                        <li>Reduced burnout</li>
+                        <li>Professional development</li>
+                    </ul>
+                    <p style="text-align: center; font-size: 1.3em; margin-top: 20px;">
+                        <strong>Satisfaction: 3.2 → 4.5</strong>
+                    </p>
+                </div>
+            </div>
+
+            <div class="highlight" style="margin-top: 40px;">
+                <h3 style="text-align: center;">📈 Business Impact</h3>
+                <p style="text-align: center; font-size: 1.2em;">
+                    ✓ Competitive advantage (fastest enrollment)<br>
+                    ✓ Scalability (2.7x capacity increase)<br>
+                    ✓ Compliance (98% success rate)<br>
+                    ✓ Growth ready (no additional staff needed)
+                </p>
+            </div>
+        </div>
+
+        <!-- Slide 7: Implementation -->
+        <div class="slide" id="slide7">
+            <h2>Simple Implementation Process</h2>
+            
+            <div style="margin: 40px 0;">
+                <div class="process-step" style="margin: 20px 0; padding: 30px;">
+                    <h3>Week 1-2: Discovery 🔍</h3>
+                    <p>Process mapping, stakeholder interviews, requirements gathering</p>
+                </div>
+                
+                <div class="process-step" style="margin: 20px 0; padding: 30px;">
+                    <h3>Week 3-4: Development 💻</h3>
+                    <p>Build core modules, integration, testing</p>
+                </div>
+                
+                <div class="process-step" style="margin: 20px 0; padding: 30px;">
+                    <h3>Week 5-6: Testing & Refinement ⚙️</h3>
+                    <p>User acceptance testing, refinement, optimization</p>
+                </div>
+                
+                <div class="process-step" style="margin: 20px 0; padding: 30px;">
+                    <h3>Week 7: Training 📚</h3>
+                    <p>Staff training, documentation, change management</p>
+                </div>
+                
+                <div class="process-step" style="margin: 20px 0; padding: 30px;">
+                    <h3>Week 8: Go-Live 🚀</h3>
+                    <p>Phased rollout, monitoring, support</p>
+                </div>
+            </div>
+
+            <div class="metric-grid">
+                <div class="metric-card">
+                    <div class="metric-value">8 weeks</div>
+                    <div class="metric-label">Total Timeline</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">$45K</div>
+                    <div class="metric-label">Investment</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">85%</div>
+                    <div class="metric-label">Automation Rate</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Call to Action -->
+        <div class="slide" id="slide8">
+            <h1 style="margin-top: 60px;">Transform Your Processes</h1>
+            <h2 style="color: #555; margin-bottom: 50px;">The Brukd Advantage</h2>
+            
+            <div class="cta-box">
+                <h3>"Brukd's RPA-AI workflow cut processing time by 65% and freed up staff for strategic tasks"</h3>
+                <p style="margin-top: 30px;">
+                    — Director of Admissions, Ontario Career College
+                </p>
+            </div>
+
+            <div class="highlight" style="margin-top: 40px;">
+                <h3 style="text-align: center; margin-bottom: 30px;">What You Get:</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <ul class="benefit-list">
+                            <li>Proven technology</li>
+                            <li>Fast implementation</li>
+                            <li>Measurable ROI</li>
+                            <li>Ongoing support</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="benefit-list">
+                            <li>Change management</li>
+                            <li>Staff training</li>
+                            <li>Continuous optimization</li>
+                            <li>Scalable solution</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 50px;">
+                <h3>Ready to Automate?</h3>
+                <p style="font-size: 1.4em; margin: 20px 0;">
+                    📧 info@brukd.com<br>
+                    📞 1-800-BRUKD-AI<br>
+                    🌐 www.brukd.com
+                </p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="navigation">
+            <button class="btn" id="prevBtn" onclick="changeSlide(-1)">← Previous</button>
+            <div class="slide-indicator">
+                <span id="currentSlide">1</span> / <span id="totalSlides">8</span>
+            </div>
+            <button class="btn" id="nextBtn" onclick="changeSlide(1)">Next →</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 1;
+        const totalSlides = 8;
+
+        function showSlide(n) {
+            const slides = document.getElementsByClassName('slide');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (n > totalSlides) currentSlide = totalSlides;
+            if (n < 1) currentSlide = 1;
+            
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove('active');
+            }
+            
+            slides[currentSlide - 1].classList.add('active');
+            document.getElementById('currentSlide').textContent = currentSlide;
+            
+            prevBtn.disabled = currentSlide === 1;
+            nextBtn.textContent = currentSlide === totalSlides ? 'Finish' : 'Next →';
+            
+            // Scroll to top on slide change
+            window.scrollTo(0, 0);
+        }
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowLeft') changeSlide(-1);
+            if (event.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(currentSlide);
+    </script>
+</body>
+</html>
+
