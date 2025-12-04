@@ -119,9 +119,9 @@ streamlit run dashboard.py
 - Scalable solution ready for enrollment growth
 
 ### 📞 Contact
-*[*Brukd Consultancy](https://brukdconsultancy.com/)**  
+ 
 Process Automation & AI Integration Services  
-www.brukd.com
+https://brukdconsultancy.com/
 
 ---
 *This is a demonstration project showcasing RPA/AI capabilities for business process automation.*
