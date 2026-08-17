@@ -110,7 +110,7 @@ def main():
     """Main dashboard"""
     
     # Header
-    st.title("🤖 Brukd Career College Automation Dashboard")
+    st.title("🤖 DD Demo — Career College Automation Dashboard")
     st.markdown("### Process Automation & Smart Workflow with RPA/AI")
     st.markdown("---")
     
@@ -661,7 +661,7 @@ def show_case_study():
     st.header("📋 Case Study: Ontario Career College")
     
     st.markdown("""
-    ## Brukd's RPA-AI Workflow Cut Processing Time by 65% and Freed Up Staff for Strategic Tasks
+    ## RPA-AI Workflow Cut Processing Time by 65% and Freed Up Staff for Strategic Tasks
     
     ### Executive Summary
     
@@ -767,7 +767,7 @@ def show_case_study():
     
     ### Key Success Factors
     
-    1. **Comprehensive discovery**: Brukd spent time understanding the current process
+    1. **Comprehensive discovery**: Daniel S. Demoz spent time understanding the current process
     2. **User-centric design**: Solution designed with staff input
     3. **Phased implementation**: Gradual rollout reduced risk
     4. **Change management**: Strong focus on staff training and adoption
