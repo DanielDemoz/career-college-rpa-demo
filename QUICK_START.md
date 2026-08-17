@@ -1,6 +1,6 @@
 # 🚀 Quick Start Guide
 
-## Brukd Career College Enrollment Automation Demo
+## Daniel S. Demoz Career College Enrollment Automation Demo
 
 This guide will help you set up and run the complete RPA/AI automation demonstration.
 

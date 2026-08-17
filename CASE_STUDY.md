@@ -1,12 +1,12 @@
 # Case Study: Ontario Career College Enrollment Automation
 
-## Brukd's RPA-AI Workflow Cut Processing Time by 65% and Freed Up Staff for Strategic Tasks
+## Daniel S. Demoz's RPA-AI Workflow Cut Processing Time by 65% and Freed Up Staff for Strategic Tasks
 
 ---
 
 ## Executive Summary
 
-A mid-sized Ontario career college was struggling with manual student enrollment processing, leading to slow response times, staff burnout, and limited growth capacity. **Brukd Consultancy** implemented an integrated RPA/AI solution that **automated 85% of the enrollment workflow**, reducing processing time from **45 minutes to 16 minutes** per application while improving accuracy and staff satisfaction.
+A mid-sized Ontario career college was struggling with manual student enrollment processing, leading to slow response times, staff burnout, and limited growth capacity. **Daniel S. Demoz** implemented an integrated RPA/AI solution that **automated 85% of the enrollment workflow**, reducing processing time from **45 minutes to 16 minutes** per application while improving accuracy and staff satisfaction.
 
 ### Key Results
 
@@ -106,7 +106,7 @@ The college needed a **transformative solution** that would:
 
 ## The Solution
 
-Brukd Consultancy designed and implemented a comprehensive **RPA/AI automation system** for enrollment document processing.
+Daniel S. Demoz designed and implemented a comprehensive **RPA/AI automation system** for enrollment document processing.
 
 ### System Architecture
 
@@ -491,9 +491,9 @@ These strategic activities generated:
 
 > ### "Transformative Impact on Our Operations"
 >
-> *"The Brukd RPA solution has fundamentally transformed our admissions process. Our staff are happier and more engaged, students get faster responses and a better experience, and we can now handle our growing enrollment without adding headcount.*
+> *"This RPA solution has fundamentally transformed our admissions process. Our staff are happier and more engaged, students get faster responses and a better experience, and we can now handle our growing enrollment without adding headcount.*
 >
-> *What impressed me most was Brukd's comprehensive approach. They didn't just build technology - they understood our process, involved our staff, and ensured successful adoption. The system paid for itself in less than a year, and we're now exploring automation for other processes.*
+> *What impressed me most was the comprehensive approach. The team didn't just build technology - they understood our process, involved our staff, and ensured successful adoption. The system paid for itself in less than a year, and we're now exploring automation for other processes.*
 >
 > *The competitive advantage this has given us is significant. When prospective students get an acceptance letter in 4 hours while our competitors take 3-5 days, they choose us. When our staff can focus on counseling students instead of data entry, they're more fulfilled and we deliver better service.*
 >
@@ -552,11 +552,11 @@ This has enhanced their **brand reputation** and **employer partnerships**.
 
 ---
 
-## About Brukd Consultancy
+## About Daniel S. Demoz
 
 ### Our Approach
 
-Brukd Consultancy specializes in **process automation and AI integration** for educational institutions and businesses. We don't just implement technology - we **transform operations** and **empower people**.
+Daniel S. Demoz specializes in **process automation and AI integration** for educational institutions and businesses. We don't just implement technology - we **transform operations** and **empower people**.
 
 **Our methodology:**
 1. **Discover**: Deep understanding of current state
@@ -573,7 +573,7 @@ Brukd Consultancy specializes in **process automation and AI integration** for e
 - **Digital Transformation**: End-to-end modernization
 - **Change Management**: Ensure adoption and success
 
-### Why Brukd?
+### Why Daniel S. Demoz?
 
 - **Deep education sector expertise**: We understand career colleges
 - **Proven track record**: 50+ successful implementations
@@ -597,10 +597,12 @@ Brukd Consultancy specializes in **process automation and AI integration** for e
 
 **Schedule a free assessment** to identify automation opportunities in your organization.
 
-**Contact Brukd Consultancy:**
-- 📧 Email: info@brukd.com
-- 📞 Phone: 1-800-BRUKD-AI (1-800-278-5324)
-- 🌐 Web: www.brukd.com
+**Contact Daniel S. Demoz:**
+- 📧 Email: asbdansi9@gmail.com
+- 📞 Phone: (437) 249-3308
+- 🌐 Website: brukdconsultancy.com
+- 🔗 LinkedIn: linkedin.com/in/daniel-s-demoz
+- 💼 GitHub: github.com/DanielDemoz
 - 📍 Address: 123 Innovation Drive, Toronto, ON M5V 3A8
 
 ### What to Expect
@@ -632,13 +634,13 @@ Brukd Consultancy specializes in **process automation and AI integration** for e
 - **Case Studies**: More success stories from our clients
 - **Webinar**: "From Manual to Automated: A Journey"
 
-Available at: **www.brukd.com/resources**
+Available at: **brukdconsultancy.com**
 
 ---
 
 ## Conclusion
 
-The Ontario Career College's transformation demonstrates the **powerful impact of intelligent automation**. By combining RPA technology, AI-powered classification, and smart workflow orchestration, Brukd delivered:
+The Ontario Career College's transformation demonstrates the **powerful impact of intelligent automation**. By combining RPA technology, AI-powered classification, and smart workflow orchestration, Daniel S. Demoz delivered:
 
 - **65% time savings** (45 min → 16 min per application)
 - **$48,720 annual cost savings**
@@ -652,7 +654,7 @@ But beyond the numbers, this project **transformed how the college operates**. S
 
 ---
 
-*© 2025 Brukd Consultancy. All rights reserved.*
+*© 2025 Daniel S. Demoz. All rights reserved.*
 
 *This case study is based on a real implementation. Client name has been anonymized. Results are based on actual measured outcomes over a 12-month period.*
 

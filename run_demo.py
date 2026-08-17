@@ -223,7 +223,7 @@ def main():
    • QUICK_START.md     - Setup and usage guide
    • CASE_STUDY.md      - Complete case study with ROI analysis
 
-Thank you for trying the Brukd RPA/AI Automation Demo! 🚀
+Thank you for trying the DD Demo RPA/AI Automation Demo! 🚀
 """)
 
 

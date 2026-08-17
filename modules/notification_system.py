@@ -257,7 +257,7 @@ VALIDATION RESULT:
 View full application: https://admin.careercollege.ca/applications/{data.get('application_id', '')}
 
 ---
-Automated by Brukd RPA System
+Automated by DD Demo RPA System
 """
         
         return {'subject': subject, 'body': body}
@@ -289,7 +289,7 @@ View application: https://admin.careercollege.ca/applications/{data.get('applica
 
 ---
 Please review and take action within 24 hours.
-Automated by Brukd RPA System
+Automated by DD Demo RPA System
 """
         
         return {'subject': subject, 'body': body}

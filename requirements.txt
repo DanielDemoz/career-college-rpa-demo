@@ -1,5 +1,5 @@
 # RPA/AI Automation for Career College Enrollment Processing
-# Brukd Consultancy - Process Automation Demo
+# Daniel S. Demoz - Process Automation Demo
 
 # OCR and Document Processing
 pytesseract==0.3.10

@@ -1,6 +1,6 @@
 """
 Main Orchestrator for Career College Enrollment Automation
-Brukd Consultancy - RPA/AI Workflow Demo
+Daniel S. Demoz - RPA/AI Workflow Demo
 """
 
 import os

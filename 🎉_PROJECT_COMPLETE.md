@@ -510,7 +510,7 @@ This project represents:
 
 ---
 
-*© 2025 Brukd Consultancy - Process Automation & AI Integration*
+*© 2025 Daniel S. Demoz - Process Automation & AI Integration*
 
 *"Brukd's RPA-AI workflow cut processing time by 65% and freed up staff for strategic tasks."*
 

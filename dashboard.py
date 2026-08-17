@@ -14,7 +14,7 @@ from pathlib import Path
 
 # Page configuration
 st.set_page_config(
-    page_title="Brukd RPA/AI Workflow Dashboard",
+    page_title="DD Demo — RPA/AI Workflow Dashboard",
     page_icon="🤖",
     layout="wide",
     initial_sidebar_state="expanded"
@@ -666,7 +666,7 @@ def show_case_study():
     ### Executive Summary
     
     A mid-sized Ontario career college was struggling with manual student enrollment processing, 
-    leading to slow response times, staff burnout, and limited growth capacity. Brukd Consultancy 
+    leading to slow response times, staff burnout, and limited growth capacity. Daniel S. Demoz 
     implemented an integrated RPA/AI solution that automated 85% of the enrollment workflow, 
     reducing processing time from 45 minutes to 16 minutes per application while improving 
     accuracy and staff satisfaction.
@@ -689,7 +689,7 @@ def show_case_study():
     
     ### The Solution
     
-    Brukd Consultancy designed and implemented a comprehensive RPA/AI automation system:
+    Daniel S. Demoz designed and implemented a comprehensive RPA/AI automation system:
     
     #### 1. **OCR Engine**
     - Automated text extraction from student documents
@@ -758,7 +758,7 @@ def show_case_study():
     
     ### Client Testimonial
     
-    > *"The Brukd RPA solution has transformed our admissions process. Our staff are happier, 
+    > *"The DD Demo RPA solution has transformed our admissions process. Our staff are happier, 
     > students get faster responses, and we can now handle our growing enrollment without adding 
     > headcount. The system paid for itself in less than a year, and we're now exploring 
     > automation for other processes."*
@@ -789,9 +789,9 @@ def show_case_study():
     - Graduation credential processing
     - Alumni engagement
     
-    ### About Brukd Consultancy
+    ### About Daniel S. Demoz
     
-    Brukd Consultancy specializes in process automation and AI integration for educational 
+    Daniel S. Demoz specializes in process automation and AI integration for educational 
     institutions and businesses. We help organizations reduce costs, improve quality, and 
     free up staff for strategic work.
     
@@ -806,7 +806,7 @@ def show_case_study():
     
     **Ready to transform your processes?**
     
-    Contact Brukd Consultancy for a free assessment: **info@brukd.com**
+    Contact Daniel S. Demoz for a free assessment: **asbdansi9@gmail.com**
     """)
 
 

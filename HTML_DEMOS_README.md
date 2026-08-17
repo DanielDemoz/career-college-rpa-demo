@@ -2,7 +2,7 @@
 
 ## Overview
 
-This suite of HTML demonstrations allows you to showcase Brukd's RPA/AI automation value **without any software installation**. Perfect for non-technical clients, business stakeholders, and executives.
+This suite of HTML demonstrations allows you to showcase Daniel S. Demoz's RPA/AI automation value **without any software installation**. Perfect for non-technical clients, business stakeholders, and executives.
 
 ---
 
@@ -214,9 +214,9 @@ All demos use "Ontario Career College" as example. To customize:
 3. Save and reopen in browser
 
 ### Change Contact Information
-Update Brukd contact details:
+Update Daniel S. Demoz contact details:
 
-1. Search for "info@brukd.com"
+1. Search for "asbdansi9@gmail.com"
 2. Replace with your email
 3. Update phone and website
 
@@ -313,7 +313,7 @@ Hi [Client Name],
 
 Thank you for your interest in process automation!
 
-I've attached interactive demonstrations showing how Brukd's RPA/AI 
+I've attached interactive demonstrations showing how this RPA/AI 
 solution can transform your enrollment process:
 
 • 65% reduction in processing time
@@ -334,8 +334,8 @@ your specific situation.
 
 Best regards,
 [Your Name]
-Brukd Consultancy
-info@brukd.com | 1-800-BRUKD-AI
+Daniel S. Demoz
+asbdansi9@gmail.com | (437) 249-3308
 ```
 
 ---
@@ -465,5 +465,5 @@ You now have **4 professional HTML demonstrations** that:
 
 ---
 
-*© 2025 Brukd Consultancy - These demos showcase RPA/AI automation for career college enrollment processing*
+*© 2025 Daniel S. Demoz - These demos showcase RPA/AI automation for career college enrollment processing*
 
