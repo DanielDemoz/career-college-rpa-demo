@@ -1,128 +1,48 @@
-# 🤖 Career College Enrollment Automation System
-## Brukd Consultancy - RPA/AI Workflow Solution
+# Career College Enrollment Automation
 
-### 📋 Project Overview
-This demonstration showcases an intelligent automation system for Ontario career college student enrollment document processing. The system combines OCR technology, AI-powered classification, and automated workflow orchestration to dramatically reduce manual processing time.
+RPA/AI demonstration for automating Ontario career college enrollment document intake, validation, and routing.
 
-### 🎯 Business Problem
-Ontario career colleges process hundreds of student enrollment applications monthly, each requiring:
-- Manual verification of multiple documents (ID, transcripts, proof of address)
-- Data entry into student information systems
-- Compliance checking against PCCO regulations
-- Staff notifications and task assignments
-- Follow-up with incomplete applications
+## Problem
 
-**Current State:** 45-60 minutes per application, high error rates, staff burnout
+Career colleges process hundreds of enrollment applications monthly—each requiring manual document verification, data entry, PCCO compliance checks, and staff follow-up (45–60 minutes per application with high error rates).
 
-### 💡 Solution: Intelligent Document Processing Workflow
+## Approach
 
-#### Key Components:
-1. **OCR Engine** - Extracts data from uploaded documents (ID cards, transcripts, utility bills)
-2. **AI Classifier** - Identifies document types and validates completeness
-3. **Rule-Based Validator** - Checks compliance with enrollment requirements
-4. **Smart Router** - Automatically assigns tasks to appropriate staff
-5. **Notification System** - Sends automated updates to students and staff
+Built a modular Python workflow: OCR extraction (Tesseract), AI document classification, rule-based PCCO compliance validation, smart task routing, and automated student/staff notifications. Added a Streamlit analytics dashboard and sample document generator for end-to-end demos.
 
-### 📊 Results
-- ⏱️ **65% reduction** in processing time (45 min → 16 min)
-- 💰 **Annual savings**: $127,000 in staff costs
-- ✅ **94% accuracy** in document classification
-- 📉 **78% reduction** in data entry errors
-- 😊 **Improved staff satisfaction** - freed from repetitive tasks
+## Results
 
-### 🚀 Quick Start
+- Processing time reduced from 45 min to 16 min per application (~65% reduction)
+- Document classification accuracy: 94%
+- Data entry error rate reduced from 12% to 2.6%
+- Demo ROI scenario: ~$4,060/month savings for a 300-enrollment/month college profile
+
+## Tech stack
+
+Python, Tesseract OCR, Streamlit, scikit-learn (classification), custom rule engine
+
+## How to run
 
 ```bash
-# Install dependencies
 pip install -r requirements.txt
-
-# Install Tesseract OCR (Windows)
-# Download from: https://github.com/UB-Mannheim/tesseract/wiki
-
-# Run the automation system
+# Install Tesseract OCR — Windows: https://github.com/UB-Mannheim/tesseract/wiki
 python main.py
-
-# Launch the analytics dashboard
 streamlit run dashboard.py
 ```
 
-### 📁 Project Structure
-```
-├── main.py                          # Main automation orchestrator
-├── modules/
-│   ├── ocr_engine.py               # OCR document extraction
-│   ├── document_classifier.py      # AI-powered classification
-│   ├── validator.py                # Rule-based validation engine
-│   ├── notification_system.py      # Email/SMS notifications
-│   └── workflow_router.py          # Task assignment logic
-├── sample_documents/               # Demo enrollment documents
-├── dashboard.py                    # Streamlit analytics dashboard
-├── generate_samples.py             # Creates sample documents
-├── metrics_calculator.py           # Before/after analysis
-└── visualizations/                 # Process flowcharts
-```
+Generate sample documents: `python generate_samples.py`
 
-### 🎨 Features Demonstrated
-- **Document Upload Interface** - Drag-and-drop for multiple files
-- **Real-time OCR Processing** - Watch as text is extracted
-- **Intelligent Classification** - AI identifies document types
-- **Validation Dashboard** - See which requirements are met
-- **Automated Routing** - Tasks assigned to correct departments
-- **Progress Tracking** - Monitor all applications in real-time
-- **Analytics & Reporting** - Before/after metrics visualization
+## Screenshot / demo
 
-### 🏫 Use Case: Ontario Career College
-**College Profile:** Mid-size private career college
-- 300 new enrollments per month
-- 8 staff members in admissions
-- Programs: Healthcare, IT, Business, Skilled Trades
+Run `python main.py` for the automation demo and `streamlit run dashboard.py` for before/after metrics. Process flowcharts in `visualizations/`.
 
-**Documents Processed:**
-- Government-issued photo ID
-- High school transcripts or equivalency
-- Proof of Ontario residency
-- OSAP documentation (if applicable)
-- International student permits (study visas)
+Built by Daniel S. Demoz as an RPA/AI capability showcase.
 
-### 📈 ROI Analysis
-**Before Automation:**
-- Processing time: 45 minutes/application
-- Staff cost: $28/hour (loaded)
-- Error rate: 12%
-- Monthly processing cost: $6,300
+## Contact
 
-**After Automation:**
-- Processing time: 16 minutes/application
-- Staff cost: Same hourly rate, fewer hours
-- Error rate: 2.6%
-- Monthly processing cost: $2,240
-- **Monthly savings: $4,060**
-- **Annual savings: $48,720**
-- **3-year ROI: $146,160**
-
-### 🎬 Demonstration Flow
-1. **Upload** - Student submits enrollment documents via portal
-2. **Extract** - OCR engine reads all documents automatically
-3. **Classify** - AI identifies each document type
-4. **Validate** - System checks completeness and compliance
-5. **Route** - Incomplete apps go to follow-up queue, complete to approval
-6. **Notify** - Automated emails to students and staff
-7. **Report** - Real-time dashboard shows processing metrics
-
-### 🏆 Brukd Value Proposition
-*"Brukd's RPA-AI workflow cut processing time by 65% and freed up staff for strategic student success initiatives instead of paperwork"*
-
-**Strategic Impact:**
-- Staff redeployed to student counseling and retention
-- Faster enrollment = better student experience
-- Compliance improved through consistent automated checks
-- Scalable solution ready for enrollment growth
-
-### 📞 Contact
- 
-Process Automation & AI Integration Services  
-https://brukdconsultancy.com/
-
----
-*This is a demonstration project showcasing RPA/AI capabilities for business process automation.*
-
+Daniel S. Demoz  
+📧 Email: asbdansi9@gmail.com  
+📱 Phone: (437) 249-3308  
+🔗 LinkedIn: linkedin.com/in/daniel-s-demoz  
+💼 GitHub: github.com/DanielDemoz  
+🌐 Website: brukdconsultancy.com
